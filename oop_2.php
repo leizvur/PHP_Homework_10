@@ -28,7 +28,7 @@ class SuperClass
 	public $name; 		
 }
 
-//интерфейсы для всех классов
+//интерфейс для всех классов
 
 interface DescriptionInterface
 {
