@@ -25,14 +25,21 @@ ini_set("display_errors", 1);
 
 class SuperClass
 {
-	public $name; 
-		
+	public $name; 		
 }
 
-// наследуемый класс машин
+//интерфейсы для всех классов
 
-class Car extends SuperClass
+interface DescriptionInterface
 {
+	public function setDescription($name);
+}
+
+
+// Наследуемый класс машин
+
+class Car extends SuperClass implements DescriptionInterface 
+{ 
 	public $transmission; // тип коробки передач
 	public $region; // регион продаж
 	public $package; // комплектация
@@ -40,7 +47,6 @@ class Car extends SuperClass
 	public $exchangerate; //курс обмена валют к доллару
 	public $price; // цена
 	
-
 	public function __construct($name, $transmission, $region, $package)
 	{
 		$this->name=$name;
@@ -53,6 +59,15 @@ class Car extends SuperClass
 		print_r(" Коробка передач: " . $this->transmission . ".");
 		echo "</pre>";
 	}
+
+	public function setDescription($name)
+	{
+		echo "<pre>";
+		print_r("Описание " . $this->name . ":");
+		print_r(" автомобиль комплектации  " . $this->package . " обладает высокой конкурентоспособностью среди прочих автомобилей рынка " . $this->region . ".");
+		print_r(" Базовый состав комплектации четко соответствует основным запросам целевой аудитории.");
+		echo "</pre>";
+	}		
 }
 ?>
 
@@ -63,9 +78,10 @@ class Car extends SuperClass
 $Toyota=new Car("Toyona Avenses", "ручная", "Россия", "Sol");
 $BMW=new Car("BMW X5", "авто", "Россия", "VIP");
 
-// наследуюемый класс телевизоров
 
-class TV extends SuperClass
+// Наследуюемый класс телевизоров
+
+class TV extends SuperClass implements DescriptionInterface
 {
 	public $lighting; // подсветка
 	public $diagonal; //диагональ экрана
@@ -80,7 +96,14 @@ class TV extends SuperClass
 		$this->lighting=$lighting;
 		echo "<pre>";
 		print_r ("На склад доставлены модели телевизоров " . $this->name . " диагональю " . $this->diagonal . ". Формат: "  . $this->dataformat);
-		echo "</pre>";
+		echo "</pre>";	
+	}
+
+	public function setDescription($name)
+	{
+		echo "<pre>";
+		print_r ("Описание телевизонов " . $this->name . ": полностью соответствуют ожиданиям целевой аудитории в рамках заявленной ценовой категории.");
+		echo "</pre>";		
 	}
 
 	public function getSurPrise($price, $lighting)
@@ -113,7 +136,10 @@ echo $tvDigital->getSurPrise("120K RUR", true);
 $tvAnalog=new TV("NeDoTV", "100", "ЭраДоHD", false);
 echo $tvAnalog->getSurPrise("10 RUR", false);
 
-class Pen extends SuperClass
+
+// Наследуемый класс ручек
+
+class Pen extends SuperClass implements DescriptionInterface
  {
  	public $color;
  	public $audience;
@@ -130,6 +156,13 @@ class Pen extends SuperClass
  		echo "<pre>";
  		echo "</pre>";
  		print_r($this->audience . " ждут новые " . $this->color . " ручки как можно скорее.");
+ 		echo "</pre>";	
+ 	}
+
+	public function setDescription($name)
+	{
+		echo "<pre>";
+ 		print_r("Описание ручек " . $this->name . ": ручки высокого качества, корпуса ручек изготовлены из ударопрочного пищевого пластика, их можно грызть в порыве эмоций без ущерба для здоровья. Ручки рекомендованы для использования в стрессовых ситуациях.");
  		echo "</pre>";
  	}
  }
@@ -143,9 +176,10 @@ $penSchool=new Pen("3D-ручки","синие", "Школьники", 100);
 $penBusiness=new Pen("Паркер", "черные", "Менеджеры", 200);
 
 
-// наследуемый класс уток
+// Наследуемый класс уток
 
-class Duck extends SuperClass
+
+class Duck extends SuperClass implements DescriptionInterface
 {
 	public $food;
 	public $sex;
@@ -157,6 +191,13 @@ class Duck extends SuperClass
 		$this->sex=$sex;
 		echo "<pre>";
 		print_r("На наш пруд прилетели редчайшие утки-" . $this->name  . "! Нужно накормить их!");
+		echo "</pre>";
+	}
+
+	public function setDescription($name)
+	{
+		echo "<pre>";
+		print_r("Описание уток " . $this->name  . ": утки редчайшего окраса, занесенные в зеленую книгу, пользуются исключительной популярностью у заводчиков редких пернатых! Рекомендуются в качестве уникального подарка для близких друзей и соратников, поскольку извлекают забавные звуки, несовсем уместные в приличном обществе, но вполне уморительные для неснобов среднего класса!");
 		echo "</pre>";
 	}
 
@@ -187,7 +228,10 @@ echo $duckHome->methodFeed();
 $duckWild=new Duck("разгуляи", "зерно", "селезни");
 echo $duckWild->methodFeed();
 
-class Product extends SuperClass
+
+// Наследуемый класс товаров
+
+class Product extends SuperClass implements DescriptionInterface
 {
 	public $id;
 	public $type;
@@ -200,9 +244,15 @@ class Product extends SuperClass
 		$this->type=$type;
 		$this->name=$name;
 		$this->category=$category;
-
 		echo "<pre>";
 		print_r("Поступил новый товар: " . $this->name . ".");
+		echo "</pre>";
+	}
+
+	public function setDescription($name)
+	{
+		echo "<pre>";
+		print_r("Описание товара " . $this->name . ": уникальный экземпляр. полностью соответствующий ожиданиям целевой аудитории, как по форме, так и по содержанию.");
 		echo "</pre>";
 	}
 	
