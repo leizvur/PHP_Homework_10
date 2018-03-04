@@ -28,7 +28,7 @@ class SuperClass
 	public $name; 		
 }
 
-//интерфейс для всех классов
+//интерфейсы для всех классов
 
 interface DescriptionInterface
 {
@@ -75,9 +75,10 @@ class Car extends SuperClass implements DescriptionInterface
 
 <?php
 
-$Toyota=new Car("Toyona Avenses", "ручная", "Россия", "Sol");
+$Toyota=new Car("Toyota Avenses", "ручная", "Россия", "Sol");
+echo $Toyota->setDescription("Toyota Avenses");
 $BMW=new Car("BMW X5", "авто", "Россия", "VIP");
-
+echo $BMW->setDescription("BMW X5");
 
 // Наследуюемый класс телевизоров
 
@@ -102,7 +103,7 @@ class TV extends SuperClass implements DescriptionInterface
 	public function setDescription($name)
 	{
 		echo "<pre>";
-		print_r ("Описание телевизонов " . $this->name . ": полностью соответствуют ожиданиям целевой аудитории в рамках заявленной ценовой категории.");
+		print_r ("Описание телевизоров " . $this->name . ": полностью соответствуют ожиданиям целевой аудитории в рамках заявленной ценовой категории.");
 		echo "</pre>";		
 	}
 
@@ -133,8 +134,10 @@ class TV extends SuperClass implements DescriptionInterface
 
 $tvDigital=new TV("iDaTV", "200", "4K", true);
 echo $tvDigital->getSurPrise("120K RUR", true);
+echo $tvDigital->setDescription("iDaTV");
 $tvAnalog=new TV("NeDoTV", "100", "ЭраДоHD", false);
 echo $tvAnalog->getSurPrise("10 RUR", false);
+echo $tvAnalog->setDescription("NeDoTV");
 
 
 // Наследуемый класс ручек
@@ -173,8 +176,9 @@ class Pen extends SuperClass implements DescriptionInterface
 <?php
 
 $penSchool=new Pen("3D-ручки","синие", "Школьники", 100);
+echo $penSchool->setDescription("3D-ручки");
 $penBusiness=new Pen("Паркер", "черные", "Менеджеры", 200);
-
+echo $penBusiness->setDescription("Паркер");
 
 // Наследуемый класс уток
 
@@ -227,6 +231,7 @@ $duckHome=new Duck("домоседки", "хлеб", "девочки");
 echo $duckHome->methodFeed();
 $duckWild=new Duck("разгуляи", "зерно", "селезни");
 echo $duckWild->methodFeed();
+echo $duckWild->setDescription("разгуляи");
 
 
 // Наследуемый класс товаров
@@ -252,7 +257,7 @@ class Product extends SuperClass implements DescriptionInterface
 	public function setDescription($name)
 	{
 		echo "<pre>";
-		print_r("Описание товара " . $this->name . ": уникальный экземпляр. полностью соответствующий ожиданиям целевой аудитории, как по форме, так и по содержанию.");
+		print_r("Описание товара " . $this->name . ": уникальный экземпляр. Полностью соответствующий ожиданиям целевой аудитории, как по форме, так и по содержанию.");
 		echo "</pre>";
 	}
 	
@@ -280,6 +285,7 @@ class Product extends SuperClass implements DescriptionInterface
 
 $productFood=new Product(1, "еда", "капуста", "бахчевые", 65);
 echo $productFood->methodSort();
+echo $productFood->setDescription("капуста");
 $productSoft=new Product(2, "ПО", "АРМ", "ПО для товароведения", 1600);
 echo $productSoft->methodSort();
 $productFood1=new Product(3, "еда", "кабачки", "бахчевые", 85);
